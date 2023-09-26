@@ -1,4 +1,4 @@
-Pour suivre les progrès du site, rendez-vous sur: 
+Pour suivre les progrès du site, rendez-vous sur:                                        
 https://tristand75.github.io/jeuxdemun/accueil.html
 
 Pour accéder à l'éditeur du site, rendez-vous sur: 
