@@ -8,11 +8,11 @@
 /* Styles de base */
 body {
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
+    background-color: #000000;
 }
 
 header {
-    background-color: #0059ff;
+    background-color: #ff7f00;
     color: white;
     padding: 20px 0;
     text-align: center;
