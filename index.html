@@ -16,21 +16,27 @@
                 <li><a href="#"><button onclick="window.location.href = 'match.html';">match</button> </a></li>
                                     <li><a href="#"><button onclick="window.location.href = 'information.html';">information</button></a></li>
                 <li><a href="#"><button onclick="window.location.href = 'resultat.html';">resultat</button></a></li>
-                <input id="EditVar" type="button"  value="ChangeVarButton" />
-                <script>
-                    var myvar=Math.random();
-                    function init(){
-                        document.getElementById('EditVar').onclick=function(){EditVar(myvar);};
-                    }
-                    function addVar(varText){
-                        let element = document.createElement('div');
-                        element.innerText = varText;
-                        document.body.appendChild(element);
-                    }
+                <button id="boutonGenerer">Générer un nombre aléatoire</button>
 
-                    addVar(myvar);
-                    window.onload=init;
+                <script>
+                    // Fonction pour générer un nombre aléatoire entre 1 et 100
+                    function genererNombreAleatoire() {
+                        return Math.floor(Math.random() * 100) + 1;
+                    }
+            
+                    // Fonction pour mettre à jour le contenu de la page avec le nombre aléatoire
+                    function mettreAJourNombreAleatoire() {
+                        var nombreAleatoire = genererNombreAleatoire();
+                        document.getElementById("nombreAleatoire").innerHTML = "Nombre aléatoire : " + nombreAleatoire;
+                    }
+            
+                    // Ajouter un gestionnaire d'événement au bouton
+                    var boutonGenerer = document.getElementById("boutonGenerer");
+                    boutonGenerer.addEventListener("click", function() {
+                        mettreAJourNombreAleatoire();
+                    });
                 </script>
+                
             </ul>
         </nav>
     </header>
