@@ -16,6 +16,21 @@
                 <li><a href="#"><button onclick="window.location.href = 'match.html';">match</button> </a></li>
                                     <li><a href="#"><button onclick="window.location.href = 'information.html';">information</button></a></li>
                 <li><a href="#"><button onclick="window.location.href = 'resultat.html';">resultat</button></a></li>
+                <input id="EditVar" type="button"  value="Edit Image" />
+                <script>
+                    var myvar=15;
+                    function init(){
+                        document.getElementById('EditVar').onclick=function(){EditVar(myvar);};
+                    }
+                    function addVar(varText){
+                        let element = document.createElement('div');
+                        element.innerText = varText;
+                        document.body.appendChild(element);
+                    }
+
+                    addVar(myvar);
+                    window.onload=init;
+                </script>
             </ul>
         </nav>
     </header>
