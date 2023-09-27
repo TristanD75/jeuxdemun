@@ -8,16 +8,16 @@
 </head>
 <body>
     <header>
-    
         <nav>
             <ul>
                 <li><a href="#"><button onclick="window.location.href = 'presentation.html';">presentation</button></a></li>
-                <li><a href="#"><button onclick="window.location.href = 'equipe.html';">equipe</button> </a></li>
-                <li><a href="#"><button onclick="window.location.href = 'match.html';">match</button> </a></li>
-                                    <li><a href="#"><button onclick="window.location.href = 'information.html';">information</button></a></li>
+                <li><a href="#"><button onclick="window.location.href = 'equipe.html';">equipe</button></a></li>
+                <li><a href="#"><button onclick="window.location.href = 'match.html';">match</button></a></li>
+                <li><a href="#"><button onclick="window.location.href = 'information.html';">information</button></a></li>
                 <li><a href="#"><button onclick="window.location.href = 'resultat.html';">resultat</button></a></li>
                 <button id="boutonGenerer">Générer un nombre aléatoire</button>
-
+                <!-- Ajoutez un élément pour afficher le nombre aléatoire -->
+                <p id="nombreAleatoire">Nombre aléatoire : </p>
                 <script>
                     // Fonction pour générer un nombre aléatoire entre 1 et 100
                     function genererNombreAleatoire() {
@@ -27,7 +27,7 @@
                     // Fonction pour mettre à jour le contenu de la page avec le nombre aléatoire
                     function mettreAJourNombreAleatoire() {
                         var nombreAleatoire = genererNombreAleatoire();
-                        document.getElementById("nombreAleatoire").innerHTML = "Nombre aléatoire : " + nombreAleatoire;
+                        document.getElementById("nombreAleatoire").textContent = "Nombre aléatoire : " + nombreAleatoire;
                     }
             
                     // Ajouter un gestionnaire d'événement au bouton
@@ -36,7 +36,6 @@
                         mettreAJourNombreAleatoire();
                     });
                 </script>
-                
             </ul>
         </nav>
     </header>
