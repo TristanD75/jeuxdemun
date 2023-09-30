@@ -33,81 +33,47 @@
           </div>
           <div class="text-2">Appliquez des modifications en direct.</div>
           <div class="title">Changer le score</div>
-          <div id="confirmation-message"></div>
         </div>
     </div>
     
     <script>
-    // Charge les données depuis le fichier JSON au chargement de la page
-    window.addEventListener("load", function () {
-      fetch("scores.json")
-        .then((response) => response.json())
-        .then((data) => {
-          scoreclass1 = data.scoreclass1;
-          scoreclass2 = data.scoreclass2;
-          updateScore1();
-          updateScore2();
+        var scoreclass1 = 0;
+        var scoreclass2 = 0;
+    
+        var scoreElement1 = document.getElementById("score1");
+        var scoreElement2 = document.getElementById("score2");
+    
+        function updateScore1() {
+            scoreElement1.textContent = scoreclass1;
+        }
+    
+        function updateScore2() {
+            scoreElement2.textContent = scoreclass2;
+        }
+    
+        document.querySelector(".add-button-1").addEventListener("click", function () {
+            scoreclass1++;
+            updateScore1();
         });
-    });
     
-    var scoreElement1 = document.getElementById("score1");
-    var scoreElement2 = document.getElementById("score2");
-    var confirmationMessage = document.getElementById("confirmation-message");
+        document.querySelector(".remove-button-1").addEventListener("click", function () {
+            if (scoreclass1 > 0) {
+                scoreclass1--;
+                updateScore1();
+            }
+        });
     
-    function updateScore1() {
-      scoreElement1.textContent = scoreclass1;
-      confirmationMessage.textContent = "Score 1 mis à jour : " + scoreclass1;
-    }
+        document.querySelector(".add-button-2").addEventListener("click", function () {
+            scoreclass2++;
+            updateScore2();
+        });
     
-    function updateScore2() {
-      scoreElement2.textContent = scoreclass2;
-      confirmationMessage.textContent = "Score 2 mis à jour : " + scoreclass2;
-    }
-    
-    document.querySelector(".add-button-1").addEventListener("click", function () {
-      scoreclass1++;
-      updateScore1();
-      updateScoreInJSON();
-    });
-    
-    document.querySelector(".remove-button-1").addEventListener("click", function () {
-      if (scoreclass1 > 0) {
-        scoreclass1--;
-        updateScore1();
-        updateScoreInJSON();
-      }
-    });
-    
-    document.querySelector(".add-button-2").addEventListener("click", function () {
-      scoreclass2++;
-      updateScore2();
-      updateScoreInJSON();
-    });
-    
-    document.querySelector(".remove-button-2").addEventListener("click", function () {
-      if (scoreclass2 > 0) {
-        scoreclass2--;
-        updateScore2();
-        updateScoreInJSON();
-      }
-    });
-    
-    // Met à jour le fichier JSON avec les scores actuels
-    function updateScoreInJSON() {
-      const scoreData = {
-        scoreclass1: scoreclass1,
-        scoreclass2: scoreclass2,
-      };
-    
-      fetch("scores.json", {
-        method: "PUT", // Utilisez PUT pour mettre à jour le fichier JSON
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(scoreData),
-      });
-    }
-
+        document.querySelector(".remove-button-2").addEventListener("click", function () {
+            if (scoreclass2 > 0) {
+                scoreclass2--;
+                updateScore2();
+            }
+        });
     </script>
     
     <style>
@@ -385,55 +351,16 @@
 
 
   <script>
-    const socket = new WebSocket('https://tristand75.github.io/jeuxdemun/'); // Remplacez l'URL par celle de votre serveur WebSocket
-  
-    // Fonction pour mettre à jour le score localement et l'envoyer au serveur
-    function updateScoreAndSend(scoreclass1, scoreclass2) {
-      const data = { scoreclass1, scoreclass2 };
-      socket.send(JSON.stringify(data));
-    }
-  
-    socket.addEventListener('message', (event) => {
-      const data = JSON.parse(event.data);
-      scoreclass1 = data.scoreclass1;
-      scoreclass2 = data.scoreclass2;
-  
-      // Mettre à jour l'affichage des scores
-      document.getElementById('score1').textContent = scoreclass1;
-      document.getElementById('score2').textContent = scoreclass2;
-  
-      // Afficher le popup ici si nécessaire
+    document.getElementById("showPopupButton").addEventListener("click", function () {
+    var popup = document.getElementById("popupContainer");
+    popup.style.display = "block";
     });
-  
-    // Vos gestionnaires d'événements de bouton restent les mêmes
-    document.querySelector('.add-button-1').addEventListener('click', function () {
-      scoreclass1++;
-      updateScoreAndSend(scoreclass1, scoreclass2);
+
+    document.querySelector(".finish-button").addEventListener("click", function () {
+    var popup = document.getElementById("popupContainer");
+    popup.style.display = "none";
     });
-  
-    document.querySelector('.remove-button-1').addEventListener('click', function () {
-      if (scoreclass1 > 0) {
-        scoreclass1--;
-        updateScoreAndSend(scoreclass1, scoreclass2);
-      }
-    });
-  
-    document.querySelector('.add-button-2').addEventListener('click', function () {
-      scoreclass2++;
-      updateScoreAndSend(scoreclass1, scoreclass2);
-    });
-  
-    document.querySelector('.remove-button-2').addEventListener('click', function () {
-      if (scoreclass2 > 0) {
-        scoreclass2--;
-        updateScoreAndSend(scoreclass1, scoreclass2);
-      }
-    });
-  
-    document.getElementById('showPopupButton').addEventListener('click', function () {
-      var popup = document.getElementById('popupContainer');
-      popup.style.display = 'none';
-    });
+
   </script>
   <style>
     .popup-container {
