@@ -38,60 +38,76 @@
     </div>
     
     <script>
-        var scoreclass1 = 0;
-        var scoreclass2 = 0;
-
-        var scoreElement1 = document.getElementById("score1");
-        var scoreElement2 = document.getElementById("score2");
-        var confirmationMessage = document.getElementById("confirmation-message");
-
-        function updateScore1() {
-            scoreElement1.textContent = scoreclass1;
-            confirmationMessage.textContent = "Score 1 mis à jour : " + scoreclass1;
-        }
-
-        function updateScore2() {
-            scoreElement2.textContent = scoreclass2;
-            confirmationMessage.textContent = "Score 2 mis à jour : " + scoreclass2;
-        }
-
-        document.querySelector(".add-button-1").addEventListener("click", function () {
-            scoreclass1++;
-            updateScore1();
-            showPopup();
+    // Charge les données depuis le fichier JSON au chargement de la page
+    window.addEventListener("load", function () {
+      fetch("scores.json")
+        .then((response) => response.json())
+        .then((data) => {
+          scoreclass1 = data.scoreclass1;
+          scoreclass2 = data.scoreclass2;
+          updateScore1();
+          updateScore2();
         });
+    });
+    
+    var scoreElement1 = document.getElementById("score1");
+    var scoreElement2 = document.getElementById("score2");
+    var confirmationMessage = document.getElementById("confirmation-message");
+    
+    function updateScore1() {
+      scoreElement1.textContent = scoreclass1;
+      confirmationMessage.textContent = "Score 1 mis à jour : " + scoreclass1;
+    }
+    
+    function updateScore2() {
+      scoreElement2.textContent = scoreclass2;
+      confirmationMessage.textContent = "Score 2 mis à jour : " + scoreclass2;
+    }
+    
+    document.querySelector(".add-button-1").addEventListener("click", function () {
+      scoreclass1++;
+      updateScore1();
+      updateScoreInJSON();
+    });
+    
+    document.querySelector(".remove-button-1").addEventListener("click", function () {
+      if (scoreclass1 > 0) {
+        scoreclass1--;
+        updateScore1();
+        updateScoreInJSON();
+      }
+    });
+    
+    document.querySelector(".add-button-2").addEventListener("click", function () {
+      scoreclass2++;
+      updateScore2();
+      updateScoreInJSON();
+    });
+    
+    document.querySelector(".remove-button-2").addEventListener("click", function () {
+      if (scoreclass2 > 0) {
+        scoreclass2--;
+        updateScore2();
+        updateScoreInJSON();
+      }
+    });
+    
+    // Met à jour le fichier JSON avec les scores actuels
+    function updateScoreInJSON() {
+      const scoreData = {
+        scoreclass1: scoreclass1,
+        scoreclass2: scoreclass2,
+      };
+    
+      fetch("scores.json", {
+        method: "PUT", // Utilisez PUT pour mettre à jour le fichier JSON
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(scoreData),
+      });
+    }
 
-        document.querySelector(".remove-button-1").addEventListener("click", function () {
-            if (scoreclass1 > 0) {
-            scoreclass1--;
-            updateScore1();
-            showPopup();
-            }
-        });
-
-        document.querySelector(".add-button-2").addEventListener("click", function () {
-            scoreclass2++;
-            updateScore2();
-            showPopup();
-        });
-
-        document.querySelector(".remove-button-2").addEventListener("click", function () {
-            if (scoreclass2 > 0) {
-            scoreclass2--;
-            updateScore2();
-            showPopup();
-            }
-        });
-
-        function showPopup() {
-            var popup = document.getElementById("popupContainer");
-            popup.style.display = "block";
-        }
-
-        document.getElementById("showPopupButton").addEventListener("click", function () {
-            var popup = document.getElementById("popupContainer");
-            popup.style.display = "none";
-        });
     </script>
     
     <style>
