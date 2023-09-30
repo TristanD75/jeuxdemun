@@ -37,40 +37,56 @@
     </div>
     
     <script>
-        var scoreclass1 = 0;
-        var scoreclass2 = 0;
-    
+        function getScoresFromLocalStorage() {
+            var scoresJSON = localStorage.getItem("scores");
+            return scoresJSON ? JSON.parse(scoresJSON) : { scoreclass1: 0, scoreclass2: 0 };
+        }
+
+        // Fonction pour sauvegarder les scores dans le stockage local
+        function saveScoresToLocalStorage(scores) {
+            localStorage.setItem("scores", JSON.stringify(scores));
+        }
+
+        // Charger les scores initiaux depuis le stockage local
+        var scores = getScoresFromLocalStorage();
+
         var scoreElement1 = document.getElementById("score1");
         var scoreElement2 = document.getElementById("score2");
-    
+
         function updateScore1() {
-            scoreElement1.textContent = scoreclass1;
+            scoreElement1.textContent = scores.scoreclass1;
+            saveScoresToLocalStorage(scores);
         }
-    
+
         function updateScore2() {
-            scoreElement2.textContent = scoreclass2;
+            scoreElement2.textContent = scores.scoreclass2;
+            saveScoresToLocalStorage(scores);
         }
-    
+
+        // Appel initial pour afficher les scores stockés
+        updateScore1();
+        updateScore2();
+
         document.querySelector(".add-button-1").addEventListener("click", function () {
-            scoreclass1++;
+            scores.scoreclass1++;
             updateScore1();
         });
-    
+
         document.querySelector(".remove-button-1").addEventListener("click", function () {
-            if (scoreclass1 > 0) {
-                scoreclass1--;
+            if (scores.scoreclass1 > 0) {
+                scores.scoreclass1--;
                 updateScore1();
             }
         });
-    
+
         document.querySelector(".add-button-2").addEventListener("click", function () {
-            scoreclass2++;
+            scores.scoreclass2++;
             updateScore2();
         });
-    
+
         document.querySelector(".remove-button-2").addEventListener("click", function () {
-            if (scoreclass2 > 0) {
-                scoreclass2--;
+            if (scores.scoreclass2 > 0) {
+                scores.scoreclass2--;
                 updateScore2();
             }
         });
