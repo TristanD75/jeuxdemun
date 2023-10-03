@@ -8,6 +8,10 @@
   border-color: #eff3f4;
 }
 
+.admin-page {
+  background-color: red;
+}
+
 .nav .buttons {
   display: flex;
   flex-direction: column;
