@@ -1,1 +1,93 @@
+.nav {
+  position: relative;
+  width: 430px;
+  height: 960px;
+  background-color: #ffffff;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-color: #eff3f4;
+}
 
+.nav .buttons {
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  align-items: flex-start;
+  gap: 8px;
+  position: absolute;
+  top: 167px;
+  left: 100px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+}
+
+.buttons .selection-button {
+    display: inline-flex;
+    height: 50px;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 30px 12px 12px;
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 9999px;
+    border: none;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    }
+    .selection-button:hover{
+        background-color: #e7e7e8;
+        transition: background-color 0.2s;
+    }
+    .selection-button:active{
+        background-color: #cfd0d1;
+        transition: background-color 0.2s;
+    }
+
+.buttons .img {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.buttons .selection-button {
+  position: relative;
+  width: fit-content;
+  font-family: "Roboto-Bold", Helvetica;
+  font-weight: 700;
+  color: #0f1419;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.buttons .other-button {
+  position: relative;
+  width: fit-content;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #0f1419;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.admin-page .other-button {
+  position: relative;
+  width: fit-content;
+  font-family: "Roboto-Regular", Helvetica;
+  font-weight: 400;
+  color: #0f1419;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
