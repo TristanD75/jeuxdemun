@@ -7,7 +7,7 @@
     width: 100%;
     z-index: 1;
     border-bottom: solid 1px #eff3f4;
-    background: linear-gradient(0deg, rgba(255,255,255,0.7), rgba(255,255,255,1));
+    background: rgb(255,255,255,0.6);
     backdrop-filter: blur(10px);
 
     .Logo {
