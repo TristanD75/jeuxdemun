@@ -30,6 +30,11 @@
     display: block;
 }
 
+a, a:visited, a:active {
+    color: black; /* Couleur du texte des liens */
+    text-decoration: none; /* Pour supprimer le soulignement par défaut */
+}
+
 .footer {
     background-color: #f7f9f9;
     bottom: 0;
@@ -341,7 +346,11 @@ body {
 @media (max-width: 600px) {
 
     .main {
+        min-height: calc(100vh - 145px);
+        display: flex;
         flex-direction: column;
+        justify-content: flex-start;
+        position: relative;
     }
 
     .presentation, .results {
@@ -366,27 +375,63 @@ body {
         display: none;
     }
 
-    .popup {
-        display: none;
-        position: fixed;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0);
-        z-index: 2;
-        transition: background-color 0.8s;
+    .Matchsmobile {
+        position: relative;
     }
 
-    .popup.active {
-        transition: background-color 0.8s;
-        display: block;
-        background: rgb(255, 255, 255, 0.8);
-        backdrop-filter: blur(5px);
+    .Scoresmobile {
+        position: relative;
     }
+
+    .text600 {
+        font-size: 24px;
+    }
+
+    .text600::before {
+        visibility: hidden;
+        background-color: none;
+        transition: none;
+    }
+    
+    .text600:hover::before {
+        visibility: hidden;
+        transform: none;
+    }
+
+    .mobilecontainer {
+        margin-left: 70px;
+        margin-right: 70px;
+        gap: 20px;
+        align-items: start;
+        flex-direction: column;
+        display: flex;
+    }
+
+    .popup {
+        overflow: hidden;
+        position: fixed;
+        visibility: hidden;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.6);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        transition: opacity 0.2s;
+        opacity: 0;
+        padding-top: 70px;
+        gap: 20px;
+    }
+    
+    .popup.active {
+        visibility: visible;
+        backdrop-filter: blur(10px);
+        opacity: 0.6;
+    }     
 
     #openPopup {
         cursor: pointer;
-        background-color: red;
         display: block;
         position: fixed;
         right: 0;
@@ -395,25 +440,25 @@ body {
     }
 
     #closePopup {
+        background-color: white;
         display: block;
         position: absolute;
-        top: 20px;
-        left: 80px;
-        background: #f00;
-        color: #fff;
+        top: 13px;
+        right: 8px;
         border: none;
-        padding: 10px 20px;
         cursor: pointer;
     }
 
     .footer {
+        bottom: 0;
+        position: relative;
+        display: flex;
+
         .container {
             height: auto;
             display: flex;
             flex-direction: row;
             width: calc(60% + 110px);
         }
-
     }
-
 }
