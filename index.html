@@ -42,24 +42,18 @@
                 <circle cx="32" cy="27.5" r="8" stroke="black" stroke-width="2"/>
             </svg>
         </div>
-        <div class="Matchs">
-            <div class="text600">Matchs</div>
-        </div>
-        <div class="Scores">
+        <a class="Matchs" href="scores.html">
             <div class="text600">Scores</div>
-        </div>
+        </a>
+        <a class="Scores">
+            <div class="text600">Classements</div>
+        </a>
         <div class="sandwitch" id="openPopup">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32">
                 <rect width="23" height="3" x="4.5" y="11.5" fill="#000" rx="1.5"/>
                 <rect width="16" height="3" x="11.5" y="21.5" fill="#000" rx="1.5"/>
               </svg>              
         </div>
-        <div class="overlay" id="overlay"></div>
-        <div class="popup" id="popup">
-            <button id="closePopup">Fermer le Popup</button>
-        <!-- Contenu du popup -->
-        </div>
-
     </div>
     <div class="main">
         <div class="presentation">
@@ -88,7 +82,25 @@
             </div>
         </div>
     </div>
-    <div class="footer">
+    <div class="overlay" id="overlay"></div>
+        <div class="popup" id="popup">
+            <button id="closePopup">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32">
+                    <path fill="#fff" d="M0 0h32v32H0z"/>
+                    <rect width="23" height="3" x="8.929" y="6.808" fill="#000" rx="1.5" transform="rotate(45 8.929 6.808)"/>
+                    <rect width="23" height="3" x="6.808" y="23.071" fill="#000" rx="1.5" transform="rotate(-45 6.808 23.071)"/>
+                  </svg>                                  
+            </button>
+            <div class="mobilecontainer">
+                <a class="Matchsmobile" href="scores.html">
+                    <div class="text600">Scores</div>
+                </a>
+                <a class="Scoresmobile">
+                    <div class="text600">Classements</div>
+                </a>
+            </div>
+        </div>
+    <div class="footer" id="footer">
         <div class="container">
             <div class="links">
                 <div class="title">LIENS</div>
@@ -111,10 +123,43 @@
 
 <script>
 document.getElementById('openPopup').addEventListener('click', function() {
-    document.getElementById('popup').classList.add('active');
+    const popup = document.getElementById('popup');
+    popup.style.top = '0';
+    popup.style.opacity = '1';
+    popup.classList.add('active');
 });
 
 document.getElementById('closePopup').addEventListener('click', function() {
-    document.getElementById('popup').classList.remove('active');
+    const popup = document.getElementById('popup');
+    popup.style.top = '0';
+    popup.style.opacity = '0';
+    popup.classList.remove('active');
 });
 </script>
+
+<script>
+    function openPopup() {
+      var popup = document.querySelector('.popup');
+      popup.classList.add('active');
+    }
+  
+    function closePopup() {
+      var popup = document.querySelector('.popup');
+      popup.classList.remove('active');
+    }
+  
+    function checkWindowSize() {
+      if (window.innerWidth > 600) {
+        closePopup();
+      }
+    }
+  
+    window.addEventListener('resize', checkWindowSize);
+  
+    var openPopupButton = document.getElementById('openPopup');
+    openPopupButton.addEventListener('click', openPopup);
+  
+    var closePopupButton = document.getElementById('closePopup');
+    closePopupButton.addEventListener('click', closePopup);
+  </script>
+  
